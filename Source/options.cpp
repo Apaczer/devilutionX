@@ -250,7 +250,7 @@ void SaveIni()
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 bool HardwareCursorDefault()
 {
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE == 1)
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE == 1) || defined(__MIYOO__)
 	// See https://github.com/diasurgical/devilutionX/issues/2502
 	return false;
 #else

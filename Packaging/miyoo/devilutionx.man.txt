@@ -1,0 +1,46 @@
+# DevilutionX (Diablo 1) for MiyooCFW
+
+## Installation
+
+Copy diabdat.mpq or spawn.mpq (shareware) from your CD (or GoG install folder) to:
+/mnt/games/devilutionx
+
+For Hellfire, also copy hellfire.mpq, hfmonk.mpq, hfmusic.mpq, and hfvoice.mpq.
+
+For Chinese, Japanese, and Korean text support copy:
+https://github.com/diasurgical/devilutionx-assets/releases/download/v2/fonts.mpq
+
+For the Polish voice pack copy:
+https://github.com/diasurgical/devilutionx-assets/releases/download/v2/pl.mpq
+
+For the Russian voice pack copy:
+https://github.com/diasurgical/devilutionx-assets/releases/download/v2/ru.mpq
+
+Game saves and diablo.ini are located at:
+/mnt/.local/share/diasurgical/devilution
+
+## Controls
+
+- D-pad: move hero
+- A: attack nearby enemies, talk to townspeople and merchants, pickup/place items in the inventory, OK while in main menu
+- B: select spell, back while in menus
+- X: pickup items, open nearby chests and doors, use item in the inventory, delete character while in main menu
+- Y: cast spell, OK while in dialog
+- R1: use mana potion from belt
+- L1: use health item from belt
+- R2: inventory (alt: Start + L2 or RIGHT)
+- L2: character sheet (alt: Start + L1 or LEFT)
+- R3: left mouse click (alt: Select + L1)
+- L3: map (alt: Start + DOWN)
+- HOME: game menu
+- Start + Select: game menu (alt: Start + UP)
+- Start + L1 or LEFT: character info
+- Start + R1 or RIGHT: inventory
+- Start + DOWN: map
+- Start + Y: Quest log
+- Start + B: Spell book
+- Select + A/B/X/Y: hot spell
+- Select + D-pad: move map/cursor
+- Select + L1: left mouse click
+- Select + R1: right mouse click
+

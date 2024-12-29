@@ -18,6 +18,16 @@ cmake -S . -B build \
 make -j$(nproc) -C build
 ```
 
+**Generate IPK package**
+
+```
+export ASSETSDIR="$(mktemp -d)"
+test -e spawn.mpq || wget https://github.com/diasurgical/devilutionx-assets/releases/latest/download/spawn.mpq
+cp spawn.mpq $ASSETSDIR
+cp -r build/assets $ASSETSDIR
+gm2xpkg -i -c -q -f Packaging/miyoo/pkg.cfg
+```
+
 ## Installing
 
 You will need alongside `devilutionx` binary following data:

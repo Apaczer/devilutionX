@@ -1,5 +1,6 @@
 # MIYOO
 set(BUILD_ASSETS_MPQ OFF)
+#set(UNPACKED_MPQS ON)
 
 set(DEVILUTIONX_SYSTEM_LIBSODIUM OFF)
 set(NONET ON)
@@ -7,6 +8,12 @@ set(NONET ON)
 set(STREAM_ALL_AUDIO_MIN_FILE_SIZE 4096)
 set(DEFAULT_AUDIO_BUFFER_SIZE 768)
 set(DEFAULT_AUDIO_RESAMPLING_QUALITY 2)
+
+# MIYOO is ARMv5 with no FPU/VPU so use all gcc optimizations
+set(_extra_flags "-march=armv5te -mtune=arm926ej-s -fdata-sections -ffunction-sections -fsingle-precision-constant \
+    -fno-PIC -fno-stack-protector -fno-ident -fomit-frame-pointer -fno-unroll-loops")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${_extra_flags} -D__MIYOO__")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${_extra_flags} -D__MIYOO__")
 
 # MIYOO hardware can only work with 16bit surfaces (RGB565).
 set(DEVILUTIONX_DISPLAY_TEXTURE_FORMAT "SDL_PIXELFORMAT_RGB565")

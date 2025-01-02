@@ -4,22 +4,12 @@
 
 1. Install the MiyooCFW from https://github.com/TriForceX/MiyooCFW/releases
 2. Copy `devilutionx.ipk` to the `/mnt/pkgs` directory.
-3. Copy diabdat.mpq or spawn.mpq (shareware) from your CD (or GoG install folder) to:
+3. Unpack and minify all the MPQ contents (diabdat.mpq or spawn.mpq) using `unpack_and_minify` from https://github.com/diasurgical/devilutionx-mpq-tools/.
+4. Copy the resulting directories to:
 
    ~~~
-   /mnt/games/devilution/
+   /mnt/games/devilutionx/
    ~~~
-
-For Hellfire, also copy hellfire.mpq, hfmonk.mpq, hfmusic.mpq, and hfvoice.mpq.
-
-For Chinese, Japanese, and Korean text support copy:
-https://github.com/diasurgical/devilutionx-assets/releases/download/v2/fonts.mpq
-
-For the Polish voice pack copy:
-https://github.com/diasurgical/devilutionx-assets/releases/download/v2/pl.mpq
-
-For the Russian voice pack copy:
-https://github.com/diasurgical/devilutionx-assets/releases/download/v2/ru.mpq
 
 ## Controls
 

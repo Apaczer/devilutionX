@@ -20,10 +20,15 @@ make -j$(nproc) -C build
 
 **Generate IPK package**
 
+requires `smpq` tool from e.g. APT if there is no `spawn.mpq` in TOPDIR
+also for unpacking you'll need [unpack_and_minify_mpq](https://github.com/diasurgical/devilutionx-mpq-tools) tool
+
 ```
 export ASSETSDIR="$(mktemp -d)"
-test -e spawn.mpq || wget https://github.com/diasurgical/devilutionx-assets/releases/latest/download/spawn.mpq
-cp spawn.mpq $ASSETSDIR
+test -e spawn.mpq || wget http://ftp.blizzard.com/pub/demos/diablosw.exe
+md5sum -c diablosw.hash && smpq -x diablosw.exe spawn.mpq || rm diablosw.exe
+! test -f diablosw.exe && echo "WARNING: Couldn't read diablosw.exe file, for SHAREWARE data" || \
+unpack_and_minify_mpq spawn.mpq --output-dir $ASSETSDIR/ && echo "INFO: Succesfuly unpacked 'spawn.mpq' data"
 cp -r build/assets $ASSETSDIR
 gm2xpkg -i -c -q -f Packaging/miyoo/pkg.cfg
 ```
@@ -32,4 +37,4 @@ gm2xpkg -i -c -q -f Packaging/miyoo/pkg.cfg
 
 You will need alongside `devilutionx` binary following data:
 - `assets/` dir
-- `spawn.mpq` from shareware ver. or `DIABDAT.MPQ` from OE game
+- unpacked MPQ from shareware `spawn.mpq` archive or from OE `DIABDAT.MPQ` with game assets see [devilutionx-mpq-tools](https://github.com/diasurgical/devilutionx-mpq-tools)

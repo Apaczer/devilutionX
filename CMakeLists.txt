@@ -135,6 +135,7 @@ RELEASE_OPTION(DEVILUTIONX_STATIC_CXX_STDLIB "Link C++ standard library statical
 option(DEVILUTIONX_PROFILE_GENERATE "Build a binary that generates the profile for PGO" OFF)
 option(DEVILUTIONX_PROFILE_USE "Build with PGO using the given profile file" OFF)
 set(DEVILUTIONX_PROFILE_DIR "" CACHE STRING "Directory where the profile is stored")
+set(DEVILUTIONX_PROFILE_PATH "" CACHE STRING "Absolute path to where the profile will be generated or read from (disables DEVILUTIONX_PROFILE_DIR)")
 
 include(MoldLinker)
 
@@ -261,12 +262,19 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-  add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_GENERATE}>:-fprofile-generate>")
-  add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_GENERATE}>:-fprofile-generate>")
-  add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_USE}>:-fprofile-use>")
-  add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_USE}>:-fprofile-use>")
-  add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_DIR}>:-fprofile-dir=${DEVILUTIONX_PROFILE_DIR};-fprofile-prefix-path=${CMAKE_CURRENT_BINARY_DIR}>")
-  add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_DIR}>:-fprofile-dir=${DEVILUTIONX_PROFILE_DIR};-fprofile-prefix-path=${CMAKE_CURRENT_BINARY_DIR}>")
+  if(DEFINED DEVILUTIONX_PROFILE_PATH AND NOT DEVILUTIONX_PROFILE_PATH STREQUAL "")
+    add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_GENERATE}>:-fprofile-generate=${DEVILUTIONX_PROFILE_PATH}>")
+    add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_GENERATE}>:-fprofile-generate=${DEVILUTIONX_PROFILE_PATH}>")
+    add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_USE}>:-fprofile-use=${DEVILUTIONX_PROFILE_PATH}>")
+    add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_USE}>:-fprofile-use=${DEVILUTIONX_PROFILE_PATH}>")
+  else()
+    add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_GENERATE}>:-fprofile-generate>")
+    add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_GENERATE}>:-fprofile-generate>")
+    add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_USE}>:-fprofile-use>")
+    add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_USE}>:-fprofile-use>")
+    add_compile_options("$<$<BOOL:${DEVILUTIONX_PROFILE_DIR}>:-fprofile-dir=${DEVILUTIONX_PROFILE_DIR};-fprofile-prefix-path=${CMAKE_CURRENT_BINARY_DIR}>")
+    add_link_options("$<$<BOOL:${DEVILUTIONX_PROFILE_DIR}>:-fprofile-dir=${DEVILUTIONX_PROFILE_DIR};-fprofile-prefix-path=${CMAKE_CURRENT_BINARY_DIR}>")
+  endif()
 endif()
 
 # Not a genexp because CMake doesn't support it

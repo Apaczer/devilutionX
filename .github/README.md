@@ -33,6 +33,22 @@ cp -r build/assets $ASSETSDIR
 gm2xpkg -i -c -q -f Packaging/miyoo/pkg.cfg
 ```
 
+**Optimizng build with PGO**
+
+- to generate profile add to cmake options:
+```
+		-DDEVILUTIONX_PROFILE_GENERATE=ON \
+		-DDEVILUTIONX_PROFILE_PATH="/mnt/profile"
+```
+
+- place profiling data in TOPDIR and use:
+```
+		-DDEVILUTIONX_PROFILE_USE=ON \
+		-DDEVILUTIONX_PROFILE_PATH="${PWD}/profile"
+```
+
+pre-made PGO data can be found at `Packaging/miyoo/profile-${LIBC}` dir
+
 ## Installing
 
 You will need alongside `devilutionx` binary following data:

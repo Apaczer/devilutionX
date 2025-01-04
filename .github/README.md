@@ -27,7 +27,7 @@ also for unpacking you'll need [unpack_and_minify_mpq](https://github.com/diasur
 export ASSETSDIR="$(mktemp -d)"
 test -e spawn.mpq || wget http://ftp.blizzard.com/pub/demos/diablosw.exe
 md5sum -c diablosw.hash && smpq -x diablosw.exe spawn.mpq || rm diablosw.exe
-! test -f diablosw.exe && echo "WARNING: Couldn't read diablosw.exe file, for SHAREWARE data" || \
+! test -f spawn.mpq && echo "WARNING: Couldn't locate\\download spawn.mpq file, for SHAREWARE data" || \
 unpack_and_minify_mpq spawn.mpq --output-dir $ASSETSDIR/ && echo "INFO: Succesfuly unpacked 'spawn.mpq' data"
 cp -r build/assets $ASSETSDIR
 gm2xpkg -i -c -q -f Packaging/miyoo/pkg.cfg
